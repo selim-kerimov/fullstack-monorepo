@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ProfileCreateDto } from './dto/profileCreateDto';
 import { ProfileUpdateDto } from './dto/profileUpdateDto';
