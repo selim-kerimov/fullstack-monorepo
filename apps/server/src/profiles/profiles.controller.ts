@@ -9,12 +9,13 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
-  ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ProfileCreateDto } from './dto/profileCreateDto';
 import { ProfileUpdateDto } from './dto/profileUpdateDto';
 import { ProfilesService } from './profiles.service';
 import type { UUID } from 'crypto';
+import { ProfilesGuard } from './profiles.guard';
 
 @Controller('profiles')
 export class ProfilesController {
@@ -42,6 +43,7 @@ export class ProfilesController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @UseGuards(ProfilesGuard)
   delete(@Param('id', ParseUUIDPipe) id: UUID) {
     return this.service.delete(id);
   }
