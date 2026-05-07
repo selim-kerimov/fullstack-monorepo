@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { ProfileCreateDto } from './dto/profileCreateDto';
-import { ProfileUpdateDto } from './dto/profileUpdateDto';
+import { ProfileCreateDto } from './dto/profileCreateDto.js';
+import { ProfileUpdateDto } from './dto/profileUpdateDto.js';
 
 @Injectable()
 export class ProfilesService {

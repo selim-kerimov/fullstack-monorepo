@@ -11,11 +11,11 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ProfileCreateDto } from './dto/profileCreateDto';
-import { ProfileUpdateDto } from './dto/profileUpdateDto';
-import { ProfilesService } from './profiles.service';
+import { ProfileCreateDto } from './dto/profileCreateDto.js';
+import { ProfileUpdateDto } from './dto/profileUpdateDto.js';
+import { ProfilesService } from './profiles.service.js';
 import type { UUID } from 'crypto';
-import { ProfilesGuard } from './profiles.guard';
+import { ProfilesGuard } from './profiles.guard.js';
 
 @Controller('profiles')
 export class ProfilesController {
