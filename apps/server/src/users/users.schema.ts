@@ -11,8 +11,14 @@ export const userOutputSchema = z.object({
   id: z.string(),
   fullName: z.string(),
   email: z.email(),
-  isVerified: z.boolean(),
-  role: z.enum(['USER', 'ADMIN']),
+  createdAt: z.date(),
+  updatedAt: z.date(),
 });
 
-export type UserCreateBody = z.infer<typeof userCreateSchema>;
+export const userUpdateInputSchema = z.object({
+  id: z.string(),
+  data: userOutputSchema.partial(),
+});
+
+export type UserCreateSchema = z.infer<typeof userCreateSchema>;
+export type UserOutputSchema = z.infer<typeof userOutputSchema>;

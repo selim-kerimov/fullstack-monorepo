@@ -13,15 +13,28 @@ import { z } from "zod";
 
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
-import { userCreateSchema, userOutputSchema } from "../../src/users/users.schema";
+import { userOutputSchema, userCreateSchema, userUpdateInputSchema } from "../../src/users/users.schema";
 
 const appRouter = t.router({
   users: t.router({
     getAll: publicProcedure
+      .output(z.array(userOutputSchema))
+      .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    findOne: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .output(userOutputSchema)
       .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     create: publicProcedure
       .input(userCreateSchema)
       .output(userOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    update: publicProcedure
+      .input(userUpdateInputSchema)
+      .output(userOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    delete: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .output(z.boolean())
       .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
     })
 });
