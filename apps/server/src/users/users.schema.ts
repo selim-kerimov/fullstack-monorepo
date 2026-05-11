@@ -3,16 +3,16 @@ import z from 'zod';
 export const userCreateSchema = z.object({
   id: z.string(),
   fullName: z.string(),
-  email: z.string(),
-  password: z.string(),
+  email: z.email(),
+  password: z.string().min(6, 'Password must be at least 8 characters'),
 });
 
 export const userOutputSchema = z.object({
   id: z.string(),
   fullName: z.string(),
-  email: z.email(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  email: z.string(),
+  createdAt: z.union([z.date(), z.string()]),
+  updatedAt: z.union([z.date(), z.string()]),
 });
 
 export const userUpdateInputSchema = z.object({

@@ -13,10 +13,28 @@ import { z } from "zod";
 
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
-import { userOutputSchema, userCreateSchema, userUpdateInputSchema } from "/Users/selim/Desktop/study/monorepo/apps/server/src/users/./users.schema";
 import { signupSchema, signupOutputSchema, confirmOtpSchema, messageOutputSchema, loginSchema, loginOutputSchema, refreshSchema, tokensOutputSchema } from "/Users/selim/Desktop/study/monorepo/apps/server/src/auth/./auth.schema";
+import { userOutputSchema, userCreateSchema, userUpdateInputSchema } from "/Users/selim/Desktop/study/monorepo/apps/server/src/users/./users.schema";
 
 const appRouter = t.router({
+  auth: t.router({
+    signup: publicProcedure
+      .input(signupSchema)
+      .output(signupOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    confirm: publicProcedure
+      .input(confirmOtpSchema)
+      .output(messageOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    login: publicProcedure
+      .input(loginSchema)
+      .output(loginOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    refresh: publicProcedure
+      .input(refreshSchema)
+      .output(tokensOutputSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
+    }),
   users: t.router({
     getAll: publicProcedure
       .output(z.array(userOutputSchema))
@@ -36,24 +54,6 @@ const appRouter = t.router({
     delete: publicProcedure
       .input(z.object({ id: z.string() }))
       .output(z.boolean())
-      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
-    }),
-  auth: t.router({
-    signup: publicProcedure
-      .input(signupSchema)
-      .output(signupOutputSchema)
-      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
-    confirm: publicProcedure
-      .input(confirmOtpSchema)
-      .output(messageOutputSchema)
-      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
-    login: publicProcedure
-      .input(loginSchema)
-      .output(loginOutputSchema)
-      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
-    refresh: publicProcedure
-      .input(refreshSchema)
-      .output(tokensOutputSchema)
       .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
     })
 });

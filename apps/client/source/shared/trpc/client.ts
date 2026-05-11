@@ -17,6 +17,13 @@ export const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
       url: process.env.NEXT_PUBLIC_TRPC_URL!,
+      headers() {
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("accessToken")
+            : null;
+        return token ? { Authorization: `Bearer ${token}` } : {};
+      },
     }),
   ],
 });
