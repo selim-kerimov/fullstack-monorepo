@@ -8,6 +8,7 @@ import { DatabaseService } from './database/database.service';
 import { AuthModule } from './auth/auth.module';
 import { LoggingService } from './common/logging/logging.service';
 import { TRPCModule } from 'nestjs-trpc';
+import { TrpcLoggerMiddleware } from './trpc/logger.middleware';
 
 @Module({
   imports: [
@@ -16,11 +17,16 @@ import { TRPCModule } from 'nestjs-trpc';
     UsersModule,
     AuthModule,
     TRPCModule.forRoot({
-      basePath: '../generated/trpc',
+      basePath: '/trpc',
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, DatabaseService, LoggingService],
+  providers: [
+    AppService,
+    DatabaseService,
+    LoggingService,
+    TrpcLoggerMiddleware,
+  ],
   exports: [LoggingService],
 })
 export class AppModule {}

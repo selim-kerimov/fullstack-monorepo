@@ -13,7 +13,7 @@ import { z } from "zod";
 
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
-import { userOutputSchema, userCreateSchema, userUpdateInputSchema } from "../../src/users/users.schema";
+import { userOutputSchema, userCreateSchema, userUpdateInputSchema } from "/Users/selim/Desktop/study/monorepo/apps/server/src/users/./users.schema";
 
 const appRouter = t.router({
   users: t.router({

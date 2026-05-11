@@ -1,4 +1,4 @@
-import { Input, Mutation, Query, Router } from 'nestjs-trpc';
+import { Input, Mutation, Query, Router, UseMiddlewares } from 'nestjs-trpc';
 import { UsersService } from './users.service.js';
 import {
   userCreateSchema,
@@ -7,8 +7,10 @@ import {
 } from './users.schema.js';
 import type { UserCreateSchema, UserOutputSchema } from './users.schema.js';
 import z from 'zod';
+import { TrpcLoggerMiddleware } from 'src/trpc/logger.middleware';
 
 @Router({ alias: 'users' })
+@UseMiddlewares(TrpcLoggerMiddleware)
 export class UsersRouter {
   constructor(private readonly usersService: UsersService) {}
 
